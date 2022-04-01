@@ -1,13 +1,3 @@
 ﻿@page "/detail/{Id:long}"
 
 <HeroDetailComponent Hero="hero" />
-
-@code {
-    [Parameter] public long Id { get; set; }
-    private Hero? hero;
-
-    protected override async Task OnParametersSetAsync()
-    {
-        hero = await HeroService.GetHero(Id);
-    }
-}

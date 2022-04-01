@@ -11,17 +11,3 @@
 </div>
 
 <app-hero-search></app-hero-search>
-
-@code {
-    private IEnumerable<Hero> heroes = new List<Hero>();
-
-    protected override async Task OnInitializedAsync()
-    {
-        await GetHeroes();
-    }
-
-    private async Task GetHeroes()
-    {
-        heroes = (await HeroService.GetHeroes() ?? Array.Empty<Hero>()).Take(4);
-    }
-}

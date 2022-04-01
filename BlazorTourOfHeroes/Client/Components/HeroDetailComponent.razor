@@ -12,15 +12,3 @@
 
     </div>
 }
-
-@code {
-    [Parameter] public Hero? Hero { get; set; }
-
-    private async Task Save()
-    {
-        if (Hero is not null)
-        {
-            await HeroService.UpdateHero(Hero);
-        }
-    }
-}
