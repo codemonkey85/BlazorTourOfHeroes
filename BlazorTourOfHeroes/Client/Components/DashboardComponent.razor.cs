@@ -1,5 +1,3 @@
-using BlazorTourOfHeroes.Client.Services;
-
 namespace BlazorTourOfHeroes.Client.Components;
 
 public partial class DashboardComponent

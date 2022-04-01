@@ -1,6 +1,3 @@
-using BlazorTourOfHeroes.Client.Services;
-using Microsoft.AspNetCore.Components;
-
 namespace BlazorTourOfHeroes.Client.Pages;
 
 public partial class HeroDetailPage

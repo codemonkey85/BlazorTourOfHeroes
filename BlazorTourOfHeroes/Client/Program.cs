@@ -1,6 +1,4 @@
-﻿using BlazorTourOfHeroes.Client;
-using BlazorTourOfHeroes.Client.Services;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
