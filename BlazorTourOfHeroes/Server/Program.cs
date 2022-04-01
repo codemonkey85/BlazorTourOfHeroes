@@ -1,11 +1,11 @@
-﻿using BlazorTourOfHeroes.Server.Api;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContextFactory<AppDbContext>(options => options.UseInMemoryDatabase(nameof(AppDbContext)));
 
 var app = builder.Build();
 
@@ -31,6 +31,9 @@ app.UseRouting();
 app.MapRazorPages();
 app.MapControllers();
 app.MapFallbackToFile("index.html");
+
+var dbContext = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
+dbContext.Database.EnsureCreated();
 
 app.MapHeroesApi();
 
