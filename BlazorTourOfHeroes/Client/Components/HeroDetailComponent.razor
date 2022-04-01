@@ -1,0 +1,26 @@
+﻿@if (Hero is not null)
+{
+    <div>
+
+        <h2>@Hero.Name.ToUpper() Details</h2>
+        <div><span>id: </span>@Hero.Id</div>
+        <div>
+            <label for="hero-name">Hero name: </label>
+            <input id="hero-name" @bind="Hero.Name" placeholder="name">
+        </div>
+        <button type="button" @onclick="Save">save</button>
+
+    </div>
+}
+
+@code {
+    [Parameter] public Hero? Hero { get; set; }
+
+    private async Task Save()
+    {
+        if (Hero is not null)
+        {
+            await HeroService.UpdateHero(Hero);
+        }
+    }
+}

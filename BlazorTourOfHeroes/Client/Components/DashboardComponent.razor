@@ -1,0 +1,27 @@
+﻿<PageTitle>Dashboard</PageTitle>
+
+<h2>Top Heroes</h2>
+<div class="heroes-menu">
+    @foreach (var hero in heroes)
+    {
+        <a routerLink="/detail/@hero.Id">
+            @hero.Name
+        </a>
+    }
+</div>
+
+<app-hero-search></app-hero-search>
+
+@code {
+    private IEnumerable<Hero> heroes = new List<Hero>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetHeroes();
+    }
+
+    private async Task GetHeroes()
+    {
+        heroes = (await HeroService.GetHeroes() ?? Array.Empty<Hero>()).Take(4);
+    }
+}
