@@ -11,15 +11,11 @@ public static class HeroesApi
         app.MapDelete("/heroes/{id}", DeleteHero);
     }
 
-    private async static Task<IResult> GetHeroes(HttpRequest request, [FromServices] AppDbContext dbContext)
-    {
-        return Results.Ok(await dbContext.Heroes.ToArrayAsync());
-    }
+    private async static Task<IResult> GetHeroes(HttpRequest request, [FromServices] AppDbContext dbContext) =>
+        Results.Ok(await dbContext.Heroes.ToArrayAsync());
 
-    private async static Task<IResult> GetHero(HttpRequest request, long id, [FromServices] AppDbContext dbContext)
-    {
-        return Results.Ok(await dbContext.Heroes.FindAsync(id));
-    }
+    private async static Task<IResult> GetHero(HttpRequest request, long id, [FromServices] AppDbContext dbContext) =>
+        Results.Ok(await dbContext.Heroes.FindAsync(id));
 
     private async static Task<IResult> CreateHero(HttpRequest request, Hero hero, [FromServices] AppDbContext dbContext)
     {
