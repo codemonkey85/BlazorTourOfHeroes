@@ -4,10 +4,10 @@
 <div class="heroes-menu">
     @foreach (var hero in heroes)
     {
-        <a routerLink="/detail/@hero.Id">
+        <a href="/detail/@hero.Id">
             @hero.Name
         </a>
     }
 </div>
 
-<app-hero-search></app-hero-search>
+<HeroSearchComponent />
