@@ -3,7 +3,7 @@ namespace BlazorTourOfHeroes.Client.Components;
 public partial class HeroesComponent
 {
     private IList<Hero> heroes = new List<Hero>();
-    private readonly Hero? selectedHero;
+    // private readonly Hero? selectedHero;
     private string heroName = string.Empty;
     async protected override Task OnInitializedAsync() => await GetHeroes();
 

@@ -9,6 +9,7 @@ public static class HeroesApi
         app.MapPost("/heroes", CreateHero);
         app.MapPut("/heroes", UpdateHero);
         app.MapDelete("/heroes/{id}", DeleteHero);
+        app.MapGet("/heroes/search", SearchHeroes);
     }
 
     private async static Task<IResult> GetHeroes(HttpRequest request, [FromServices] AppDbContext dbContext) =>
@@ -42,4 +43,11 @@ public static class HeroesApi
         await dbContext.SaveChangesAsync();
         return Results.Ok();
     }
+
+    private async static Task<IResult> SearchHeroes(HttpRequest request, [FromQuery] string searchTerms, [FromServices] AppDbContext dbContext) =>
+        Results.Ok(string.IsNullOrWhiteSpace(searchTerms) ? Array.Empty<Hero>() : await (
+            from heroes in dbContext.Heroes
+            where EF.Functions.Like(heroes.Name, $"%{searchTerms}%")
+            select heroes
+            ).ToArrayAsync());
 }

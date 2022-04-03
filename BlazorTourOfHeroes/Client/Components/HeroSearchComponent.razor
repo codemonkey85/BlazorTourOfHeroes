@@ -1,12 +1,20 @@
 ﻿<div id="search-component">
     <label for="search-box">Hero Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-    <ul class="search-result">
-        <li *ngFor="let hero of heroes$ | async">
-            <a routerLink="/detail/{{hero.id}}">
-                {{hero.name}}
-            </a>
-        </li>
-    </ul>
+    <input id="search-box"
+           @bind-value="Text"
+           @bind-value:event="oninput"
+           placeholder="Search" />
+    @if (heroes is not null)
+    {
+        <ul class="search-result">
+            @foreach (var hero in heroes)
+            {
+                <li>
+                    <a href="/detail/@hero?.Id">
+                        @hero?.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    }
 </div>

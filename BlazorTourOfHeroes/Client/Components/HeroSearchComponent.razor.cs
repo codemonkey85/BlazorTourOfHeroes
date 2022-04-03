@@ -1,46 +1,61 @@
+using Timer = System.Timers.Timer;
+
 namespace BlazorTourOfHeroes.Client.Components;
 
 public partial class HeroSearchComponent
 {
+    private IEnumerable<Hero?>? heroes;
+
+    private async Task SearchAsync()
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            heroes = Array.Empty<Hero>();
+        }
+        heroes = await HeroService.SearchHeroes(text);
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+    }
+
+    private Timer? timer = null;
+
+    private string text = string.Empty;
+    private string Text
+    {
+        get => text;
+        set
+        {
+            if (value == text)
+            {
+                return;
+            }
+            text = value;
+            DisposeTimer();
+            timer = new Timer(300);
+            timer.Elapsed += TimerElapsed_TickAsync;
+            timer.Enabled = true;
+            timer.Start();
+        }
+    }
+
+    private async void TimerElapsed_TickAsync(object? sender, EventArgs e)
+    {
+        DisposeTimer();
+        await SearchAsync();
+    }
+
+    private void DisposeTimer()
+    {
+        if (timer is null)
+        {
+            return;
+        }
+        timer.Enabled = false;
+        timer.Elapsed -= TimerElapsed_TickAsync;
+        timer.Dispose();
+        timer = null;
+    }
 }
-
-/*
- import { Component, OnInit } from '@angular/core';
-
-import { Observable, Subject } from 'rxjs';
-
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
-
-@Component({
-  selector: 'app-hero-search',
-  templateUrl: './hero-search.component.html',
-  styleUrls: ['./hero-search.component.css'],
-})
-export class HeroSearchComponent implements OnInit {
-  heroes$!: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
-
-  constructor(private heroService: HeroService) {}
-
-  // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
-
-  ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchHeroes(term))
-    );
-  }
-}
- */

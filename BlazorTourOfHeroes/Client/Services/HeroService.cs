@@ -50,7 +50,9 @@ public class HeroService
     public async Task<IEnumerable<Hero>?> SearchHeroes(string term)
     {
         Log(nameof(SearchHeroes));
-        return await _httpClient.GetFromJsonAsync<Hero[]>($"{heroesApiUrl}/?name=${term}");
+        return string.IsNullOrWhiteSpace(term)
+            ? Array.Empty<Hero>()
+            : (IEnumerable<Hero>?)await _httpClient.GetFromJsonAsync<Hero[]>($"{heroesApiUrl}/search?searchTerms={term}");
     }
 
     private void Log(string message) => _messageService.Add($"HeroService: {message}");
