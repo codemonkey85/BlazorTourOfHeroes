@@ -2,7 +2,7 @@
 
 public static class HeroesApi
 {
-    public static void MapHeroesApi(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapHeroesApi(this IEndpointRouteBuilder app)
     {
         app.MapGet("/heroes", GetHeroes);
         app.MapGet("/heroes/{id}", GetHero);
@@ -10,6 +10,8 @@ public static class HeroesApi
         app.MapPut("/heroes", UpdateHero);
         app.MapDelete("/heroes/{id}", DeleteHero);
         app.MapGet("/heroes/search", SearchHeroes);
+
+        return app;
     }
 
     private async static Task<IResult> GetHeroes(HttpRequest request, [FromServices] AppDbContext dbContext) =>

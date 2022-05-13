@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Json;
-
-namespace BlazorTourOfHeroes.Client.Services;
+﻿namespace BlazorTourOfHeroes.Client.Services;
 
 public class HeroService
 {

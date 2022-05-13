@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace BlazorTourOfHeroes.Server.Pages;
+﻿namespace BlazorTourOfHeroes.Server.Pages;
 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 [IgnoreAntiforgeryToken]

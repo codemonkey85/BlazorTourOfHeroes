@@ -18,5 +18,5 @@ public class AppDbContext : DbContext
         new Hero { Id = 20, Name = "Tornado" },
     });
 
-    public DbSet<Hero> Heroes { get; set; } = default!;
+    public virtual DbSet<Hero> Heroes { get; set; } = default!;
 }

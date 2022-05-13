@@ -1,5 +1,3 @@
-using Timer = System.Timers.Timer;
-
 namespace BlazorTourOfHeroes.Client.Components;
 
 public partial class HeroSearchComponent

@@ -2,10 +2,12 @@
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+var services = builder.Services;
 
-builder.Services.AddDbContextFactory<AppDbContext>(options => options.UseInMemoryDatabase(nameof(AppDbContext)));
+services.AddControllersWithViews();
+services.AddRazorPages();
+
+services.AddDbContextFactory<AppDbContext>(options => options.UseInMemoryDatabase(nameof(AppDbContext)));
 
 var app = builder.Build();
 
@@ -21,12 +23,13 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app
+    .UseHttpsRedirection()
 
-app.UseBlazorFrameworkFiles();
-app.UseStaticFiles();
+    .UseBlazorFrameworkFiles()
+    .UseStaticFiles()
 
-app.UseRouting();
+    .UseRouting();
 
 app.MapRazorPages();
 app.MapControllers();
