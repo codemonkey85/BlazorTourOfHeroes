@@ -5,6 +5,7 @@ public partial class HeroesComponent
     private IList<Hero> heroes = new List<Hero>();
     // private readonly Hero? selectedHero;
     private string heroName = string.Empty;
+    
     async protected override Task OnInitializedAsync() => await GetHeroes();
 
     private async Task GetHeroes() => heroes = (await HeroService.GetHeroes())?.ToList() ?? new List<Hero>();

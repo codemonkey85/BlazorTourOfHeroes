@@ -19,8 +19,8 @@ public partial class HeroSearchComponent
     }
 
     private Timer? timer = null;
-
     private string text = string.Empty;
+    
     private string Text
     {
         get => text;
