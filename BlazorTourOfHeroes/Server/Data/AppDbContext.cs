@@ -4,8 +4,7 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions) { }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.Entity<Hero>().HasData(new Hero[]
-    {
+    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.Entity<Hero>().HasData(
         new Hero { Id = 11, Name = "Dr Nice" },
         new Hero { Id = 12, Name = "Narco" },
         new Hero { Id = 13, Name = "Bombasto" },
@@ -15,8 +14,8 @@ public class AppDbContext : DbContext
         new Hero { Id = 17, Name = "Dynama" },
         new Hero { Id = 18, Name = "Dr IQ" },
         new Hero { Id = 19, Name = "Magma" },
-        new Hero { Id = 20, Name = "Tornado" },
-    });
+        new Hero { Id = 20, Name = "Tornado" }
+    );
 
     public virtual DbSet<Hero> Heroes { get; set; } = default!;
 }

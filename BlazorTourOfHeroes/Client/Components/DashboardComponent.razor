@@ -2,7 +2,7 @@
 
 <h2>Top Heroes</h2>
 <div class="heroes-menu">
-    @foreach (var hero in heroes)
+    @foreach (var hero in _heroes)
     {
         <a href="/detail/@hero.Id">
             @hero.Name

@@ -5,7 +5,7 @@ public partial class HeroDetailPage
     [Parameter]
     public long Id { get; set; }
 
-    private Hero? hero;
+    private Hero? _hero;
 
-    async protected override Task OnParametersSetAsync() => hero = await HeroService.GetHero(Id);
+    async protected override Task OnParametersSetAsync() => _hero = await HeroService.GetHero(Id);
 }

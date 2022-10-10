@@ -5,10 +5,10 @@ public static class HeroesApi
     public static IEndpointRouteBuilder MapHeroesApi(this IEndpointRouteBuilder app)
     {
         app.MapGet("/heroes", GetHeroes);
-        app.MapGet("/heroes/{id}", GetHero);
+        app.MapGet("/heroes/{id:long}", GetHero);
         app.MapPost("/heroes", CreateHero);
         app.MapPut("/heroes", UpdateHero);
-        app.MapDelete("/heroes/{id}", DeleteHero);
+        app.MapDelete("/heroes/{id:int}", DeleteHero);
         app.MapGet("/heroes/search", SearchHeroes);
 
         return app;

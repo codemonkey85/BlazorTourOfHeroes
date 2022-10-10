@@ -4,10 +4,10 @@
            @bind-value="Text"
            @bind-value:event="oninput"
            placeholder="Search" />
-    @if (heroes is not null)
+    @if (_heroes is not null)
     {
         <ul class="search-result">
-            @foreach (var hero in heroes)
+            @foreach (var hero in _heroes)
             {
                 <li>
                     <a href="/detail/@hero?.Id">

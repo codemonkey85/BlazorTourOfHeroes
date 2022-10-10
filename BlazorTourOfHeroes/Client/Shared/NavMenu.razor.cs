@@ -2,9 +2,9 @@ namespace BlazorTourOfHeroes.Client.Shared;
 
 public partial class NavMenu
 {
-    private bool collapseNavMenu = true;
+    private bool _collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    
-    private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
+    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu() => _collapseNavMenu = !_collapseNavMenu;
 }

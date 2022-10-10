@@ -2,15 +2,16 @@ namespace BlazorTourOfHeroes.Client.Components;
 
 public partial class HeroSearchComponent
 {
-    private IEnumerable<Hero?>? heroes;
+    private IEnumerable<Hero?>? _heroes;
 
     private async Task SearchAsync()
     {
-        if (string.IsNullOrWhiteSpace(text))
+        if (string.IsNullOrWhiteSpace(_text))
         {
-            heroes = Array.Empty<Hero>();
+            _heroes = Array.Empty<Hero>();
         }
-        heroes = await HeroService.SearchHeroes(text);
+
+        _heroes = await HeroService.SearchHeroes(_text);
         StateHasChanged();
     }
 
@@ -18,24 +19,25 @@ public partial class HeroSearchComponent
     {
     }
 
-    private Timer? timer = null;
-    private string text = string.Empty;
-    
+    private Timer? _timer = null;
+    private string _text = string.Empty;
+
     private string Text
     {
-        get => text;
+        get => _text;
         set
         {
-            if (value == text)
+            if (value == _text)
             {
                 return;
             }
-            text = value;
+
+            _text = value;
             DisposeTimer();
-            timer = new Timer(300);
-            timer.Elapsed += TimerElapsed_TickAsync;
-            timer.Enabled = true;
-            timer.Start();
+            _timer = new Timer(300);
+            _timer.Elapsed += TimerElapsed_TickAsync;
+            _timer.Enabled = true;
+            _timer.Start();
         }
     }
 
@@ -47,13 +49,14 @@ public partial class HeroSearchComponent
 
     private void DisposeTimer()
     {
-        if (timer is null)
+        if (_timer is null)
         {
             return;
         }
-        timer.Enabled = false;
-        timer.Elapsed -= TimerElapsed_TickAsync;
-        timer.Dispose();
-        timer = null;
+
+        _timer.Enabled = false;
+        _timer.Elapsed -= TimerElapsed_TickAsync;
+        _timer.Dispose();
+        _timer = null;
     }
 }
