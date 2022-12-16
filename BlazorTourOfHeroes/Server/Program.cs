@@ -38,6 +38,8 @@ app.MapFallbackToFile("index.html");
 var dbContext = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
 dbContext.Database.EnsureCreated();
 
-app.MapHeroesApi();
+var apiGroup = app.MapGroup("api");
+
+apiGroup.MapHeroesApi();
 
 app.Run();

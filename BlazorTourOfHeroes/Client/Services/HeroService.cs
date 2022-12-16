@@ -11,7 +11,7 @@ public class HeroService
         _messageService = messageService;
     }
 
-    private const string HeroesApiUrl = "/heroes";
+    private const string HeroesApiUrl = "/api/heroes";
 
     public async Task<IEnumerable<Hero>?> GetHeroes()
     {
