@@ -1,13 +1,11 @@
 ﻿@if (MessageService.Messages.Any())
 {
     <div>
-
         <h2>Messages</h2>
         <button type="button" class="clear" @onclick="MessageService.Clear">Clear messages</button>
         @foreach (var message in MessageService.Messages)
         {
             <div> @message </div>
         }
-
     </div>
 }

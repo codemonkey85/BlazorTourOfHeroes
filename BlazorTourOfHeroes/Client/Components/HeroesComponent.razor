@@ -16,7 +16,7 @@
 
 <div>
     <label for="new-hero">Hero name: </label>
-    <input id="new-hero" @bind="_heroName" />
+    <input id="new-hero" @bind-value="_heroName" />
 
     <button type="button" class="add-button" @onclick="Add">
         Add hero

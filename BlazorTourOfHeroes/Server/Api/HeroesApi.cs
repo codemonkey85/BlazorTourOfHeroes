@@ -6,10 +6,10 @@ public static class HeroesApi
     {
         var herosGroup = apiGroup.MapGroup("heroes");
 
-        herosGroup.MapGet(string.Empty, GetHeroes);
+        herosGroup.MapGet("/", GetHeroes);
         herosGroup.MapGet("/{id:long}", GetHero);
-        herosGroup.MapPost(string.Empty, CreateHero);
-        herosGroup.MapPut(string.Empty, UpdateHero);
+        herosGroup.MapPost("/", CreateHero);
+        herosGroup.MapPut("/", UpdateHero);
         herosGroup.MapDelete("/{id:int}", DeleteHero);
         herosGroup.MapGet("/search", SearchHeroes);
 
@@ -52,7 +52,7 @@ public static class HeroesApi
     private async static Task<IResult> SearchHeroes(HttpRequest request, [FromQuery] string searchTerms,
         AppDbContext dbContext) =>
         Results.Ok(string.IsNullOrWhiteSpace(searchTerms)
-            ? Array.Empty<Hero>()
+            ? []
             : await (
                 from heroes in dbContext.Heroes
                 where EF.Functions.Like(heroes.Name, $"%{searchTerms}%")

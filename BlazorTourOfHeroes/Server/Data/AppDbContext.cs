@@ -1,9 +1,7 @@
 ﻿namespace BlazorTourOfHeroes.Server.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : DbContext(dbContextOptions)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.Entity<Hero>().HasData(
         new Hero { Id = 11, Name = "Dr Nice" },
         new Hero { Id = 12, Name = "Narco" },

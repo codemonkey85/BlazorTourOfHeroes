@@ -5,7 +5,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services
     .AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
     .AddScoped<MessageService>()
-    .AddScoped<HeroService>()
-    .AddScoped<RefreshService>();
+    .AddScoped<HeroService>();
 
 await builder.Build().RunAsync();
