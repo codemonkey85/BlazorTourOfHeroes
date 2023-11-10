@@ -1,6 +1,6 @@
 ﻿namespace BlazorTourOfHeroes.Client.Services;
 
-public record MessageService()
+public record MessageService
 {
     public readonly IList<string> Messages = new List<string>();
 

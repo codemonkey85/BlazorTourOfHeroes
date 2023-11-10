@@ -7,10 +7,10 @@ public static class HeroesApi
         var herosGroup = apiGroup.MapGroup("heroes");
 
         herosGroup.MapGet("/", GetHeroes);
-        herosGroup.MapGet("/{id:long}", GetHero);
+        herosGroup.MapGet("/{id}", GetHero);
         herosGroup.MapPost("/", CreateHero);
         herosGroup.MapPut("/", UpdateHero);
-        herosGroup.MapDelete("/{id:int}", DeleteHero);
+        herosGroup.MapDelete("/{id}", DeleteHero);
         herosGroup.MapGet("/search", SearchHeroes);
 
         return apiGroup;

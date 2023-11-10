@@ -1,6 +1,6 @@
 ﻿namespace BlazorTourOfHeroes.Shared.Models;
 
-public class Hero()
+public class Hero
 {
     public long Id { get; set; }
 

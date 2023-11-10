@@ -3,7 +3,7 @@
 <h2>My Heroes</h2>
 
 <ul class="heroes">
-    @foreach (var hero in _heroes)
+    @foreach (var hero in heroes)
     {
         <li>
             <a href="/detail/@hero.Id">
@@ -16,7 +16,7 @@
 
 <div>
     <label for="new-hero">Hero name: </label>
-    <input id="new-hero" @bind-value="_heroName" />
+    <input id="new-hero" @bind-value="heroName" />
 
     <button type="button" class="add-button" @onclick="Add">
         Add hero

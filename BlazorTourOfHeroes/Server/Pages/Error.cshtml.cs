@@ -7,7 +7,7 @@ public class ErrorModel(ILogger<ErrorModel> logger) : PageModel
 
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-    private readonly ILogger<ErrorModel> _logger = logger;
+    private readonly ILogger<ErrorModel> logger = logger;
 
     public void OnGet() => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 }

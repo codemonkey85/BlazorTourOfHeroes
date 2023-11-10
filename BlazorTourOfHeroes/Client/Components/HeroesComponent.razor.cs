@@ -2,30 +2,30 @@ namespace BlazorTourOfHeroes.Client.Components;
 
 public partial class HeroesComponent
 {
-    private List<Hero> _heroes = [];
+    private List<Hero> heroes = [];
 
     // private readonly Hero? selectedHero;
-    private string _heroName = string.Empty;
+    private string heroName = string.Empty;
 
     async protected override Task OnInitializedAsync() => await GetHeroes();
 
-    private async Task GetHeroes() => _heroes = (await HeroService.GetHeroes())?.ToList() ?? [];
+    private async Task GetHeroes() => heroes = (await HeroService.GetHeroes())?.ToList() ?? [];
 
     private async Task Add()
     {
-        var addedHero = await HeroService.AddHero(new Hero { Name = _heroName.Trim() });
+        var addedHero = await HeroService.AddHero(new Hero { Name = heroName.Trim() });
         if (addedHero is null)
         {
             return;
         }
 
-        _heroName = string.Empty;
-        _heroes.Add(addedHero);
+        heroName = string.Empty;
+        heroes.Add(addedHero);
     }
 
     private async Task Delete(Hero hero)
     {
         await HeroService.DeleteHero(hero.Id);
-        _heroes.Remove(hero);
+        heroes.Remove(hero);
     }
 }

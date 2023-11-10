@@ -42,7 +42,7 @@ public record HeroService(HttpClient HttpClient, MessageService MessageService)
         return string.IsNullOrWhiteSpace(term)
             ? Array.Empty<Hero>()
             : (IEnumerable<Hero>?)await HttpClient.GetFromJsonAsync<Hero[]>(
-                $@"{HeroesApiUrl}/search?searchTerms={term}");
+                $"{HeroesApiUrl}/search?searchTerms={term}");
     }
 
     private void Log(string message) => MessageService.Add($"HeroService: {message}");
